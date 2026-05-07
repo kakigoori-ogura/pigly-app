@@ -1,49 +1,62 @@
-<h1>体重一覧</h1>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: sans-serif;
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-<h2>新規登録</h2>
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px
+    width: 300px;
+    text-align: center;
+}
 
-<form action="/logs" method="POST">
-    @csrf
+h1 {
+    color: #d291ff;
+    margin-bottom: 10px;
+}
 
-    <div>
-        日付: <input type="date" name="date">
-    </div>
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
 
-    <div>
-        体重: <input type="text" name="weight">
-    </div>
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+</style>
 
-    <div>
-        カロリー: <input type="text" name="calories">
-    </div>
+<div class="container">
 
-    <div>
-        運動時間: <input type="text" name="exercise_time">
-    </div>
+    <h1>体重登録</h1>
 
-    <div>
-        運動内容: <input type="text" name="exercise_content">
-    </div>
+    <form action="/logs" method="POST">
+        @csrf
 
-    <button type="submit">登録</button>
-</form>
+        <input type="date" name="date">
+        <input type="text" name="weight" placeholder="体重">
+        <input type="text" name="calories" placeholder="カロリー">
+        <input type="text" name="exercise_time" placeholder="運動時間">
+        <input type="text" name="exercise_content" placeholder="運動内容">
 
-<table border="1">
-    <tr>
-        <th>日付</th>
-        <th>体重</th>
-        <th>カロリー</th>
-        <th>運動時間</th>
-    </tr>
+        <button type="submit">登録</button>
+    </form>
 
-    @foreach ($logs as $log)
-        <tr>
-            <td>{{ $log->date }}</td>
-            <td>{{ $log->weight }}</td>
-            <td>{{ $log->calories }}</td>
-            <td>{{ $log->exercise_time }}</td>
-        </tr>
-    @endforeach
-</table>
-
-<a href="/home">戻る</a>
+</div>

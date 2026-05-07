@@ -27,4 +27,8 @@ public function store(Request $request)
     ]);
     return redirect('/logs');
 }
+public function create()
+{
+    return view('weight_logs.create');
+}
 }

@@ -15,9 +15,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', function () {
         return view('home');
     });
-
-    Route::get('/logs/create', function () {
-        return view('weight_logs.create');
-    });
-    Route::post('/logs', [WeightLogController::class, 'store']);
+    
+    Route::get('/logs/create', [WeightLogController::class, 'create']);
 });
