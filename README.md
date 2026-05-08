@@ -33,6 +33,8 @@ Laravel環境構築
 
 http://localhost/register
 http://localhost/logs/create
+http://localhost/weight/initial
+http://localhost/dashboard
 
 - 開発一覧：http://localhost
 - 商品登録：http://localhost/items/create

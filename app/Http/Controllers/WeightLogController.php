@@ -20,8 +20,9 @@ public function store(Request $request)
 {
     DB::table('weight_logs')->insert([
     'user_id' => Auth::id(),
-    'date' => now(),
+    'date' => $request->date,
     'weight' => $request->weight,
+    'calories' => $request->calories,
     'created_at' => now(),
     'updated_at' => now(),
     ]);

@@ -2,17 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>新規登録</title>
-
-    @if ($errors->any())
-    <div style="color:red;">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    <title>初期体重登録</title>
 
     <style>
     body {
@@ -35,7 +25,13 @@
 
     h1 {
         color: #d291ff;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
+    }
+
+    p {
+        font-size: 12px;
+        color: gray;
+        margin-bottom: 20px;
     }
 
     input {
@@ -57,19 +53,6 @@
         cursor: pointer;
         margin-top: 10px;
     }
-    .login-link {
-    margin-top: 15px;
-    font-size: 14px;
-}
-
-.login-link a {
-    color: #4da6ff;
-    text-decoration: none;
-}
-
-.login-link a:hover {
-    text-decoration: underline;
-}
     </style>
 </head>
 
@@ -78,20 +61,15 @@
 <div class="container">
     <h1>PiGLy</h1>
     <h2>新規会員登録</h2>
-    <p>STEP1 アカウント情報の登録</p>
+    <p>STEP2 体重データの入力</p>
 
-    <form method="POST" action="/register">
+    <form action="/weight/initial" method="POST">
         @csrf
 
-        <input type="text" name="name" placeholder="名前">
-        <input type="email" name="email" placeholder="メールアドレス">
-        <input type="password" name="password" placeholder="パスワード">
-        <input type="password" name="password_confirmation" placeholder="パスワード確認">
+        <input type="text" name="current_weight" placeholder="現在の体重">
+        <input type="text" name="target_weight" placeholder="目標の体重">
 
-        <button type="submit">次に進む</button>
-        <p class="login-link">
-    <a href="/login">ログインはこちら</a>
-</p>
+        <button type="submit">アカウント作成</button>
     </form>
 </div>
 

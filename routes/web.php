@@ -15,6 +15,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', function () {
         return view('home');
     });
-    
+
     Route::get('/logs/create', [WeightLogController::class, 'create']);
+
+    Route::get('/weight/initial', function () {
+    return view('weight_logs.initial');
+    });
+
+    Route::get('/dashboard', [WeightLogController::class, 'index']);
+
 });

@@ -13,6 +13,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\RegisterResponse;
+
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -29,7 +31,18 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Fortify::redirects('register', '/weight/initial');
+
         Fortify::redirects('logout', '/');
+        
+        $this->app->singleton(RegisterResponse::class, function () {
+    return new class implements RegisterResponse {
+        public function toResponse($request)
+        {
+            return redirect('/weight/initial');
+        }
+    };
+});
         
         Fortify::loginView(function () {
         return view('auth.login');
@@ -40,9 +53,13 @@ class FortifyServiceProvider extends ServiceProvider
         });
         
         Fortify::createUsersUsing(CreateNewUser::class);
+
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
+
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
+
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+
         Fortify::redirectUserForTwoFactorAuthenticationUsing(RedirectIfTwoFactorAuthenticatable::class);
 
         RateLimiter::for('login', function (Request $request) {
