@@ -40,3 +40,5 @@ Laravel環境構築
 
 - メールアドレス：test@gmail.com
 - パスワード：aaaaaaaaaa
+
+※ 一部機能（編集機能など）は未実装です。

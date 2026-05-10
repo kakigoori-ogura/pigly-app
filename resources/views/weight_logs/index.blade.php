@@ -227,7 +227,6 @@ window.onclick = function(event) {
                 <td>{{ $log->weight }}kg</td>
                 <td>{{ $log->calories ?? '-' }}</td>
                 <td>{{ $log->exercise_time ?? '-' }}</td>
-                <a href="/logs/{{ $log->id }}/edit" class="edit-btn">✏️</a>
             </tr>
             @empty
             <tr>

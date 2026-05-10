@@ -18,7 +18,6 @@ public function update(Request $request)
         'target_weight' => 'required|numeric'
     ]);
 
-    // DB更新
     DB::table('weight_targets')->updateOrInsert(
     ['user_id' => Auth::id()],
     ['target_weight' => $request->target_weight]

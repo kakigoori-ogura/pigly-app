@@ -10,7 +10,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // ユーザー作成
         $userId = DB::table('users')->insertGetId([
             'name' => 'テスト太郎',
             'email' => 'test@test.com',
@@ -19,7 +18,6 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // 目標体重
         DB::table('weight_targets')->insert([
             'user_id' => $userId,
             'target_weight' => 50.0,
@@ -27,7 +25,6 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // 体重ログ
         DB::table('weight_logs')->insert([
             [
                 'user_id' => $userId,
