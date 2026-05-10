@@ -65,9 +65,8 @@
 
     <form action="/weight/initial" method="POST">
         @csrf
-
-        <input type="text" name="current_weight" placeholder="現在の体重">
-        <input type="text" name="target_weight" placeholder="目標の体重">
+        <input type="number" name="weight" placeholder="現在の体重" step="0.1">
+        <input type="number" name="target_weight" placeholder="目標の体重" step="0.1">
 
         <button type="submit">アカウント作成</button>
     </form>

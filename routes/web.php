@@ -2,26 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeightLogController;
+use App\Http\Controllers\GoalController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/logs');
 });
 
-Route::get('/logs', [WeightLogController::class, 'index']);
-
-Route::post('/logs', [WeightLogController::class, 'store']);
-
 Route::middleware('auth')->group(function () {
-    Route::get('/home', function () {
-        return view('home');
-    });
+
+    Route::get('/logs', [WeightLogController::class, 'index']);
+
+    Route::post('/logs', [WeightLogController::class, 'store']);
 
     Route::get('/logs/create', [WeightLogController::class, 'create']);
 
-    Route::get('/weight/initial', function () {
-    return view('weight_logs.initial');
-    });
+    Route::get('/weight/initial', [WeightLogController::class, 'initial']);
+    Route::post('/weight/initial', [WeightLogController::class, 'initialStore']);
 
-    Route::get('/dashboard', [WeightLogController::class, 'index']);
-
+    Route::get('/goal/edit', [GoalController::class, 'edit']);
+    Route::post('/goal/update', [GoalController::class, 'update']);
 });
